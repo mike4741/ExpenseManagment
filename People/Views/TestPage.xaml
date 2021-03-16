@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Data="clr-namespace:Expense_Analysis.Models"
+             x:Class="BudgetApp.Views.TestPage"
+             Title="Monthly Budget" BackgroundColor="Bisque"
+              >
+ 
+        <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="Default">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+                     <Entry x:Name="newAmount" Grid.Row="1"  
+                   Placeholder="Enter Amount" />
+        <Button Text="Add Budget"
+            Grid.Row="2"
+            Clicked="OnAddBudgetClicked" />
+
+            <Label x:Name="statusMessage"
+           Grid.Row="3" />
+
+        <Button Text="Get Budget"
+            Grid.Row="4"
+                    Clicked="OnGetBudgetClicked"/>
+        <Grid Grid.Row="5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label  Text=" Month " Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor ="Black" FontSize="Subtitle"/>
+            <Label  Text=" Amount " Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment ="Center" TextColor ="Black" FontSize="Subtitle"/>
+            <Label  Text=" Remaning Amount  " Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment ="Center" TextColor ="Black" FontSize="Subtitle"/>
+
+        </Grid>
+       
+
+        <ListView x:Name="MYBUDGETLIST"
+              Grid.Row="6">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="Data:MyBudget">
+                    <ViewCell Height="30">
+                        
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Month}"  VerticalOptions="Center" HorizontalOptions="Center" />
+                            <Label Text="{Binding Amount}" Grid.Column="1" HorizontalTextAlignment="Start" />
+                        </Grid>
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+       
+                            <Picker x:Name="picker"
+                                     Title="Month"
+                                TitleColor="Red" Grid.Row="0">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                    <x:String>January</x:String>
+                                    <x:String>February</x:String>
+                                    <x:String>March</x:String>
+                                    <x:String>April</x:String>
+                                    <x:String>May</x:String>
+                                    <x:String>June</x:String>
+                                    <x:String>July</x:String>
+                                    <x:String>August</x:String>
+                                    <x:String>September</x:String>
+                                    <x:String>October</x:String>
+                                    <x:String>November</x:String>
+                                    <x:String>December</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        
+        </Grid>
+</ContentPage>

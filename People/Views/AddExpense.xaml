@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local ="clr-namespace:Expense_Analysis.Models"
+             Title="Daily Expense" BackgroundColor="Azure"
+             x:Class="BudgetApp.Views.AddExpense">
+    <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="Default">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Picker x:Name="CategoryPicker"
+                 Title="Select Expenses"
+            TitleColor="Red" Grid.Row="0" >
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Home Expenses</x:String>
+                    <x:String>Food Expenses</x:String>
+                    <x:String>Child-related Expenses</x:String>
+                    <x:String>Debt obligations</x:String>
+                    <x:String>Health care Expenses</x:String>
+                    <x:String>Transportation Expenses</x:String>
+                    <x:String>Personal care Expenses</x:String>
+                    <x:String>Pet care Expenses</x:String>
+                    <x:String>Entertainment Expenses</x:String>
+                    <x:String>Miscellaneous Expenses</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        
+        <Entry x:Name="ExpensesFor" Grid.Row="1"
+                   Placeholder="Expenses Description" />
+
+        <Entry x:Name="ExpensesAmount" Grid.Row="2"   
+                   Placeholder="Enter Amount"  TextColor="Red"/>
+        <DatePicker  x:Name="datePicker"  Grid.Row="3"
+                         AbsoluteLayout.LayoutFlags="WidthProportional"
+                         Format="D"
+                         VerticalOptions="CenterAndExpand"  TextColor="Red"
+                         />
+        <Button Text="Add Expenses"
+            Grid.Row="4"
+            Clicked="OnAddExpenseClicked" />
+        
+        <Label x:Name="statusMessage" TextColor="Red"
+           Grid.Row="5" />
+
+        <Button Text="show Expense" Grid.Row="6" Clicked="ShowExpenseClicked"/>
+        <Grid Grid.Row="7">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0"   Text="ExpenseCategory "/>
+            <Label  Grid.Column="1" Text="ExpenseName" />
+            <Label  Grid.Column="2" Text="Date"/>
+            <Label Grid.Column="3" Text="ExpensssAmount"/>
+            </Grid>
+        
+            <ListView x:Name="MYExpenseList"
+              Grid.Row="8">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:MyExpense">
+                    <ViewCell Height="30">
+                        <Grid>
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                
+                            </Grid.ColumnDefinitions>
+                           
+                            
+                            <Label Grid.Column="0"  Text="{Binding  ExpenseCategory }"/>
+                            <Label  Grid.Column="1"  Text="{Binding  ExpenseName}" />
+                            <Label  Grid.Column="2" Text="{Binding  Date}"/>
+                            <Label Grid.Column="3"  Text="{Binding  ExpensssAmount}"/>
+
+                        </Grid>
+
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+       
+    </Grid>
+</ContentPage>
